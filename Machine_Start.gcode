@@ -80,13 +80,13 @@ G1 Y250
 {if initial_tool==0}
     G4 P550 ; dwell for .5 seconds - adjust this to match your machines single pulse time
 {endif}
-{if next_extruder==1}
+{if initial_tool==1}
     G4 P1050 ; dwell for 1.0 seconds - adjust this to match your machines two pulse time
 {endif}
-{if next_extruder==2}
+{if initial_tool==2}
     G4 P1550 ; dwell for 1.5 seconds - adjust this to match your machines three pulse time
 {endif}
-{if next_extruder==3}
+{if initial_tool==3}
     G4 P2050 ; dwell for 2.0 seconds - adjust this to match your machines four pulse time
 {endif}
 G1 Y240
