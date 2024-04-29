@@ -1,0 +1,5 @@
+{
+    "gcode.general.machineType": "3D Printer",
+    "gcode.general.units": "Metric",
+    "gcode.views.maxAutoRefresh": 1000
+}
