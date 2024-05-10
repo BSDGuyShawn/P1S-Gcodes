@@ -22,44 +22,40 @@ M109 S255
 G1 X0 F500 ; press cutter slowly
 M400
 G1 E-1 F21000
-G1 X15 F21000
 M400
-G1 X0 F21000
-M400
-G1 E-1 F21000
-G1 X75 F21000
+G1 X100 E-1 F21000
 M400
 
-G1 Y0
+G1 X75 Y0
 M400
 
 G92 E0
-G1 E10 F10000
+;G1 E10 F10000
 
-G92 E0
+;G92 E0
 G1 E-75 F10000
 
 ; 3D Chameleon Unload Extruder
-;G1 Y200 F21000
-;G4
-;G1 X0
-;G4 ; force the move
+G1 Y200 F21000
+M400
+G1 X0 Y240
+M400;G4 ; force the move
 ;G1 Y240
 ;G4
 
 ; unload and home
-;G1 Y250 F2000
-;G4 P2450 ; 6 pulses
-;G1 Y240
-;G4 S1
+G1 Y250 F2000
+G4 P2450 ; 6 pulses
+G1 Y240
+G4 S1
 
 ; press button to unload 20 inches
-;G1 Y250
-;G4 S20 ;  20 second unload
-;G1 Y240
-;M400
+G1 Y250
+G4 S20 ;  20 second unload
+G1 Y240
+M400
 
-;G4 S3 ; wait for it to home
+G4 S3 ; wait for it to home
 
 G1 Z{max_layer_z + 0.5} F900 ; lower z a little
 G1 X65 Y245 F12000 ; move to safe pos 
