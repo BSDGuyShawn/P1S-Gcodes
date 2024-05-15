@@ -1,12 +1,8 @@
-;New Merged Start
-
 ;===== machine: P1S ========================
-;===== date: 20240428 =====================
+;===== date: 20240514 =====================
 ;===== turn on the HB fan & MC board fan =================
-
 M104 S75 ;set extruder temp to turn on the HB fan and prevent filament oozing from nozzle
 M710 A1 S255 ;turn on MC fan by default(P1S)
-
 ;===== reset machine status =================
 M290 X40 Y40 Z2.6666666
 G91
@@ -32,6 +28,7 @@ M140 S[bed_temperature_initial_layer_single] ;set bed temp
 M190 S[bed_temperature_initial_layer_single] ;wait for bed temp
 
 
+
 ;=============turn on fans to prevent PLA jamming=================
 {if filament_type[initial_extruder]=="PLA"}
     {if (bed_temperature[initial_extruder] >45)||(bed_temperature_initial_layer[initial_extruder] >45)}
@@ -41,7 +38,6 @@ M190 S[bed_temperature_initial_layer_single] ;wait for bed temp
     {endif};Prevent PLA from jamming
 {endif}
 M106 P2 S100 ; turn on big fan ,to cool down toolhead
-
 
 ; 3D Chameleon
 G28 ; home to make sure we know where we are
@@ -115,13 +111,12 @@ M104 S[nozzle_temperature_initial_layer] ;set extruder temp
 G91
 G0 Z10 F1200
 G90
-;G28 X
+G28 X
 M975 S1 ; turn on
 G1 X60 F12000
 G1 Y245
 G1 Y265 F3000
-
- M109 S[nozzle_temperature_initial_layer]
+M109 S[nozzle_temperature_initial_layer]
 G1 X120 F12000
 G1 X20 Y50 F12000
 G1 Y-3
@@ -132,7 +127,8 @@ M400
 
 M620.1 E F{filament_max_volumetric_speed[initial_extruder]/2.4053*60} T{nozzle_temperature_range_high[initial_extruder]}
 
-M412 S1
+
+M412 S1 ; ===turn on filament runout detection===
 
 M109 S250 ;set nozzle to common flush temp
 M106 P1 S0
@@ -162,8 +158,6 @@ G1 X165 F15000; wipe and shake
 M400
 M106 P1 S0
 ;===== prepare print temperature and material end =====
-
-
 
 
 ;===== wipe nozzle ===============================
@@ -268,7 +262,6 @@ M622 J1
 M623
 ;===== bed leveling end ================================
 
-
 ;===== home after wipe mouth============================
 M1002 judge_flag g29_before_print_flag
 M622 J0
@@ -291,8 +284,8 @@ M975 S1 ; turn on vibration supression
 {endif}
 M106 P2 S100 ; turn on big fan ,to cool down toolhead
 
-M104 S{nozzle_temperature_initial_layer[initial_extruder]} ; set extrude temp earlier, to reduce wait time
 
+M104 S{nozzle_temperature_initial_layer[initial_extruder]} ; set extrude temp earlier, to reduce wait time
 
 ;===== mech mode fast check============================
 G1 X128 Y128 Z10 F20000
@@ -305,13 +298,11 @@ M400 P200
 M970.3 Q0 A7 B30 C90 Q0 H15 K0
 M974 Q0 S2 P0
 
-
 M975 S1
 G1 F30000
 G1 X230 Y15
 G28 X ; re-home XY
 ;===== fmech mode fast check============================
-
 
 ;===== noozle load line ===============================
 M975 S1
@@ -336,11 +327,10 @@ M400
 G29.1 Z{-0.04} ; for Textured PEI Plate
 {endif}
 
-
 ;========turn off light and wait extrude temperature =============
 M1002 gcode_claim_action : 0
 M106 S0 ; turn off fan
 M106 P2 S0 ; turn off big fan
 M106 P3 S0 ; turn off chamber fan
 
-M975 S1 ; turn on mech mode supression
+M975 S1; Turn on mech mode supression
