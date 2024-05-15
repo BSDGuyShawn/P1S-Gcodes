@@ -100,7 +100,7 @@ G1 Z{max_layer_z + 3.0} F1200
         G1 E30 F500 ; preload the extruder before purge
 
         ; end 3DChameleon
-    {endif}
+    
 
     G1 X54 F21000
     G1 Y265 F21000
@@ -183,6 +183,6 @@ G1 Z{max_layer_z + 3.0} F1200
     {else}
         G1 X[x_after_toolchange] Y[y_after_toolchange] Z[z_after_toolchange] F12000
     {endif}
-
+{endif} 
 {endif}
 M412 S1

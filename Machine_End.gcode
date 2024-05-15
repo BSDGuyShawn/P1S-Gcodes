@@ -51,7 +51,7 @@ G4 S1
 
 ; press button to unload 20 inches
 G1 Y250
-G4 S20 ;  20 second unload
+G4 S18 ;  20 second unload
 G1 Y240
 M400
 
