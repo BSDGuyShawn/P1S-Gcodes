@@ -92,7 +92,7 @@ G4 S1 ; wait a second
 
 ; press button to load 22 inches
 G1 Y250
-G4 S20 ;  22 second load
+G4 S19 ;  22 second load
 G1 Y240
 M400
 
