@@ -19,6 +19,7 @@ M221 S100 ;Reset Flowrate
 M73.2   R1.0 ;Reset left time magnitude
 M1002 set_gcode_claim_speed_level : 5
 M221 X0 Y0 Z0 ; turn off soft endstop to prevent protential logic problem
+
 G29.1 Z{+0.0} ; clear z-trim value first
 M204 S10000 ; init ACC set to 10m/s^2
 
@@ -308,7 +309,7 @@ G28 X ; re-home XY
 M975 S1
 G90
 M83
-T1000
+T{initial_tool}
 G1 X18.0 Y1.0 Z0.8 F18000;Move to start position
 M109 S{nozzle_temperature_initial_layer[initial_extruder]}
 G1 Z0.2
